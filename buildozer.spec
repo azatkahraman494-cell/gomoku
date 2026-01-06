@@ -1,7 +1,7 @@
 [app]
 title = Gomoku
 package.name = gomoku
-package.domain = org.seninad
+package.domain = org.azat
 source.dir = .
 source.include_exts = py,png,jpg,kv,ttf,wav,mp3
 version = 1.0
@@ -24,4 +24,5 @@ android.build_tools_version = 34.0.0
 
 # SDK lisanslarını otomatik kabul et
 android.accept_sdk_license = True
+
 
