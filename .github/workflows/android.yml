@@ -39,6 +39,7 @@ jobs:
       - name: Build APK
         run: |
           . venv/bin/activate
+          buildozer -v android update
           buildozer -v android debug
 
       - name: Upload APK
