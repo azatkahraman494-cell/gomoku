@@ -1,0 +1,8 @@
+            - name: YAML Environment Action
+  # You may pin to the exact commit or the version.
+  # uses: doughepi/yaml-env-action@fadddba8dbcbec517d090ab1f1a5e1874a82f84d
+  uses: doughepi/yaml-env-action@v1.0.0
+  with:
+    # Path to the configuration files to use for the GitHub Workflow environment.
+    files: 
+          
