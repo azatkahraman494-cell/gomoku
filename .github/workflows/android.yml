@@ -39,7 +39,19 @@ jobs:
       - name: Build APK
         run: |
           . venv/bin/activate
+
+          # 1) SDK/NDK indirilsin ve sdkmanager yolu oluşsun
           buildozer -v android update
+
+          # 2) Lisansları otomatik kabul et
+          yes | /home/runner/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager --licenses || true
+
+          # 3) Gerekli paketleri kesin kur (aidl build-tools içindedir)
+          yes | /home/runner/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager \
+            --sdk_root=/home/runner/.buildozer/android/platform/android-sdk \
+            "platform-tools" "platforms;android-33" "build-tools;34.0.0"
+
+          # 4) APK derle
           buildozer -v android debug
 
       - name: Upload APK
