@@ -14,15 +14,14 @@ requirements = python3,kivy
 log_level = 2
 
 [android]
-# Sadece modern Android cihazlar için (önerilen):
 android.archs = arm64-v8a
 
-# Eğer eski cihaz da istiyorsan:
-# android.archs = arm64-v8a,armeabi-v7a
-
-# Android API ayarı (genelde böyle bırakmak yeter):
 android.api = 33
 android.minapi = 21
 
-# Eğer ileride izin gerekirse buraya:
-# android.permissions = INTERNET
+# KRİTİK: aidl build-tools içinden gelir
+android.build_tools_version = 34.0.0
+
+# SDK lisanslarını otomatik kabul et
+android.accept_sdk_license = True
+
