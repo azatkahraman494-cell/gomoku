@@ -36,11 +36,28 @@ jobs:
           pip install --upgrade pip
           pip install buildozer cython==0.29.34
 
-      - name: Build APK (auto-accept licenses)
+      - name: Build APK (force SDK packages)
         run: |
           set -e
           . venv/bin/activate
+
+          # Buildozer SDK/NDK setup
           yes | buildozer -v android update
+
+          SDK="$HOME/.buildozer/android/platform/android-sdk"
+          echo "SDK=$SDK"
+          ls -la "$SDK" || true
+
+          # sdkmanager nerede olursa olsun bul
+          SM="$(find "$SDK" -type f -name sdkmanager | head -n 1)"
+          echo "sdkmanager=$SM"
+          test -n "$SM"
+
+          # lisansları kabul et + gerekli paketleri zorla kur
+          yes | "$SM" --sdk_root="$SDK" --licenses || true
+          yes | "$SM" --sdk_root="$SDK" "platform-tools" "platforms;android-33" "build-tools;34.0.0"
+
+          # APK build
           yes | buildozer -v android debug
 
       - name: Upload APK
